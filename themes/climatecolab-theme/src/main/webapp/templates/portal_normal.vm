@@ -29,6 +29,9 @@
     <script type="text/javascript" src="$javascript_folder/jquery.jgrowl.min.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
     <script type="text/javascript" src="$javascript_folder/jquery.ddslick.min.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
     <script type="text/javascript" src="$javascript_folder/spin.min.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
+    <script type="text/javascript" src="$javascript_folder/jquery.bxslider.min.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
+    <script type="text/javascript" src="$javascript_folder/jquery.easing.1.3.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
+    <script type="text/javascript" src="$javascript_folder/jquery.fitvids.min.js?tt=$themeTimestamp&v=$customThemeVersion"></script>
 	$theme.include($top_head_include)
 	
     <link type="text/css" rel="stylesheet" href="$css_folder/jquery/jquery.css?tt=$themeTimestamp&v=$customThemeVersion" media="all"/>
@@ -37,6 +40,7 @@
 	<meta property="og:image" content="http://climatecolab.org/climatecolab-theme/images/ClimateColabLogo_big.png" />
 	<link rel="image_src"  type="image/png"   href="http://climatecolab.org/climatecolab-theme/images/ClimateColabLogo_big.png" />
 	
+    <link rel="stylesheet" href="$css_folder/jquery.bxslider.css?tt=$themeTimestamp&v=$customThemeVersion" type="text/css"/>
     <link rel="stylesheet" href="$css_folder/jquery.jqplot.min.css?tt=$themeTimestamp&v=$customThemeVersion" type="text/css"/>
     <link rel="stylesheet" href="$css_folder/style.css?tt=$themeTimestamp&v=$customThemeVersion" type="text/css" />
     <link rel="stylesheet" href="$css_folder/autoSuggest.css?tt=$themeTimestamp&v=$customThemeVersion" type="text/css" />
