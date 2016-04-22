@@ -385,3 +385,14 @@ function checkModelSetRadioWithId(id) {
 var selectModelForFetchedScenario = function(event){
     checkModelSetRadioWithId(event.scenario.modelId);
 };
+
+
+// jQuery slider for contests
+$(document).ready(function(){
+    $('.c-Carousel').bxSlider({
+        slideWidth: 210,
+        minSlides: 4,
+        maxSlides: 4,
+        slideMargin: 15
+    });
+});
