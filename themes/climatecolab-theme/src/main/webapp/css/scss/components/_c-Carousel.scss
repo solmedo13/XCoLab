@@ -1,0 +1,89 @@
+.c-Carousel {
+}
+
+.c-Carousel__entry {
+  width: 210px;
+  /*margin: 10px;*/
+  border: 1px solid $t-Color__grey--light;
+  display: inline-block;
+  vertical-align: top;
+  @include border-radius(5px);
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 10px 0px darkgrey;
+    -moz-box-shadow: 0px 0px 10px 0px darkgrey;
+    box-shadow: 0px 0px 10px 0px darkgrey;
+  }
+
+  h3 {
+    font-size: 17px;
+    min-height: 45px;
+  }
+
+  p {
+    margin: 10px 0 10px 0;
+    font-size: 14px;
+    min-height: 100px;
+  }
+
+  .status {
+    color: darkgrey;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      @include border-radius(5px);
+      background-color: #43BD40;
+      margin-right: 2px;
+    }
+  }
+
+  .image {
+    overflow: hidden;
+
+    img {
+      width: 210px;
+      height: 210px;
+      margin-top: -30px;
+      margin-bottom: -30px;
+    }
+  }
+
+  .counts {
+    font-size: 14px;
+    
+    .proposals {
+      display: inline-block;
+    }
+
+    .comments {
+      display: inline-block;
+      text-transform: capitalize;
+      float: right;
+    }
+
+    .votes {
+      display: inline-block;
+      text-transform: capitalize;
+      float: right;
+    }
+  }
+
+  .padded {
+    padding: 10px;
+  }
+}
+
+.bx-controls-direction {
+
+  .bx-prev {
+    left: -40px;
+  }
+
+  .bx-next {
+    right: -50px;
+  }
+
+}
