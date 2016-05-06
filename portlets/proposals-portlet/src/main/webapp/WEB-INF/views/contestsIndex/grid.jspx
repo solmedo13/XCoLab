@@ -6,6 +6,32 @@ xmlns:c="http://java.sun.com/jsp/jstl/core"
 
 	<!--@elvariable id="contestsSorted" type="org.xcolab.portlets.proposals.wrappers.ContestsSortFilterBean"-->
 
+	<div class="c-Collections">
+		<a href="#">
+			<div class="c-Collection">
+				<h3>Climate Plans</h3>
+				<p>Short description introduces the collection and provides a few notes …</p>
+				<div class="c-Collection__count"><span class="c-Collection__count__number">9</span>contests</div>
+			</div>
+		</a>
+
+		<a href="#">
+			<div class="c-Collection">
+				<h3>Country-specific Actions</h3>
+				<p>Short description introduces the collection and provides a few notes …</p>
+				<div class="c-Collection__count"><span class="c-Collection__count__number">132</span>contests</div>
+			</div>
+		</a>
+
+		<a href="#">
+			<div class="c-Collection">
+				<h3>All Actions</h3>
+				<p>Short description introduces the collection and provides a few notes …</p>
+				<div class="c-Collection__count"><span class="c-Collection__count__number">570</span>contests</div>
+			</div>
+		</a>
+	</div>
+
 	<div class="c-Carousel">
 		<c:forEach var="contest" items="${contestsSorted.contestsFeatured }" varStatus="status">
 			<div class="c-Carousel__entry">
