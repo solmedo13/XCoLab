@@ -386,6 +386,17 @@ var selectModelForFetchedScenario = function(event){
     checkModelSetRadioWithId(event.scenario.modelId);
 };
 
+// jQuery slider for collections
+$(document).ready(function(){
+    $('.c-Collections').bxSlider({
+        slideWidth: 300,
+        minSlides: 3,
+        maxSlides: 3,
+        slideMargin: 30
+        //infiniteLoop: false,
+        //hideControlOnEnd: true
+    });
+});
 
 // jQuery slider for contests
 $(document).ready(function(){
