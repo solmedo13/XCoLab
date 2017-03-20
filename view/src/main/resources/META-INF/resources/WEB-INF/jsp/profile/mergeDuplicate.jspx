@@ -23,7 +23,7 @@
 
             <div class="comm_member-photo">
                 <img src="/image/user_male_portrait?img_id=${originalMember.portraitFileEntryId}" width="150" height="150"
-                     alt="${currentUserProfile.realName}" />
+                     alt="${originalMember.firstName} ${originalMember.lastName}" />
             </div>
 
             <div class="comm_member-info">
@@ -31,13 +31,7 @@
                     <tbody>
                     <tr>
                         <td style="min-width: 106px">
-                            <div class="memname">${currentUserProfile.realName}</div>
-                            <div class="role-indicator" style="margin-top: 5px;">
-                                <div style="width: 16px">
-                                    <img src="${_themeImageFolder}/${currentUserProfile.highestRole.imageUrl}.png" width="16" height="16" />
-                                </div>
-                                ${currentUserProfile.highestRole.printName}
-                            </div>
+                            <div class="memname">${originalMember.firstName} ${originalMember.lastName}</div>
                         </td>
 
                     </tr>
@@ -49,28 +43,20 @@
                 <tbody>
                 <tr>
                     <td class="b" nowrap="nowrap" width="23%">Screen Name</td>
-                    <td width="23%">${userBean.screenName}</td>
-                    <td class="b" width="43%">Activities</td>
-                    <td class="align_right">${currentUserProfile.userActivityCountFormatted}</td>
-                </tr>
-                <tr>
-                    <td class="b" nowrap="nowrap" width="23%">Member Since</td>
-                    <td width="23%">
-                        <fmt:formatDate value="${currentUserProfile.joinDate}" type="date" dateStyle="short" timeZone="America/New_York" />
-                    </td>
+                    <td width="23%">${originalMember.screenName}</td>
                 </tr>
                 <tr>
                     <td class="b" width="23%">Country</td>
                     <td width="23%">
                         <c:choose>
-                            <c:when test="${not empty userBean.countryName}">${userBean.countryName}</c:when>
+                            <c:when test="${not empty originalMember.country}">${originalMember.country}</c:when>
                         </c:choose>
                     </td>
                 </tr>
                 <tr>
                     <td class="b" width="23%">Email</td>
                     <td colspan="3" style="white-space: nowrap;">
-                        <a href="mailto:${userBean.email}">${userBean.emailStored}</a>
+                        <a href="mailto:${originalMember.emailAddress}">${originalMember.emailAddress}</a>
 
                     </td>
                 </tr>
