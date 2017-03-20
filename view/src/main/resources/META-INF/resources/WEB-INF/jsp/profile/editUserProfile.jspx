@@ -187,7 +187,8 @@
 				</table>
 
 				<c:if test="${permissions.canAdmin}">
-					<a href="/impersonate?memberId=${currentUserProfile.userId}">Impersonate ${userBean.firstName}</a>
+					<a href="/impersonate?memberId=${currentUserProfile.userId}">Impersonate ${userBean.firstName}</a><br/><br/>
+					<a href="/members/profile/${currentUserProfile.userId}/mergeduplicate">Merge duplicate member accounts</a>
 				</c:if>
 
 				<div class="profile_about-head">Short bio</div>

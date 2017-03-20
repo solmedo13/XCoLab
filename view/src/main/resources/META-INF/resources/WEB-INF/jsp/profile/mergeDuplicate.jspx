@@ -1,0 +1,96 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:form="http://www.springframework.org/tags/form"
+          xmlns:collab="urn:jsptld:/WEB-INF/tlds/xcolab.tld"
+          xmlns:xcolab="urn:jsptagdir:/WEB-INF/tags" version="2.0">
+    <jsp:directive.page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"/>
+    <xcolab:layout title="Merge duplicate profile">
+
+
+        <!--@elvariable id="originalMember" type="org.xcolab.client.members.pojoString"-->
+
+
+        <c:set var="deleteProfileUrl" value="/members/profile/${originalMember.id_}/mergeduplicate" />
+
+        <h1>Merge duplicate Member Profile</h1>
+
+        <h2>Original profile to maintain: </h2>
+        <br/>
+
+
+
+        <div class="comm_member" style="margin-top: 0;">
+
+            <div class="comm_member-photo">
+                <img src="/image/user_male_portrait?img_id=${originalMember.portraitFileEntryId}" width="150" height="150"
+                     alt="${currentUserProfile.realName}" />
+            </div>
+
+            <div class="comm_member-info">
+                <table border="0" cellpadding="0" cellspacing="0" class="colab members topInfo">
+                    <tbody>
+                    <tr>
+                        <td style="min-width: 106px">
+                            <div class="memname">${currentUserProfile.realName}</div>
+                            <div class="role-indicator" style="margin-top: 5px;">
+                                <div style="width: 16px">
+                                    <img src="${_themeImageFolder}/${currentUserProfile.highestRole.imageUrl}.png" width="16" height="16" />
+                                </div>
+                                ${currentUserProfile.highestRole.printName}
+                            </div>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="memdiv"><!-- --></div>
+
+                <table border="0" cellpadding="0" cellspacing="0" class="colab members otherInfo profileTable" style="width:100%;">
+                <tbody>
+                <tr>
+                    <td class="b" nowrap="nowrap" width="23%">Screen Name</td>
+                    <td width="23%">${userBean.screenName}</td>
+                    <td class="b" width="43%">Activities</td>
+                    <td class="align_right">${currentUserProfile.userActivityCountFormatted}</td>
+                </tr>
+                <tr>
+                    <td class="b" nowrap="nowrap" width="23%">Member Since</td>
+                    <td width="23%">
+                        <fmt:formatDate value="${currentUserProfile.joinDate}" type="date" dateStyle="short" timeZone="America/New_York" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="b" width="23%">Country</td>
+                    <td width="23%">
+                        <c:choose>
+                            <c:when test="${not empty userBean.countryName}">${userBean.countryName}</c:when>
+                        </c:choose>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="b" width="23%">Email</td>
+                    <td colspan="3" style="white-space: nowrap;">
+                        <a href="mailto:${userBean.email}">${userBean.emailStored}</a>
+
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <form:form autocomplete="off" id="updateUserProfileForm"
+                   action="${updateUserProfileForm}"  method="post">
+            <input type="hidden" name="originalMember" value="${originalMember.id_}"/>
+            <collab:teamBox title="Profile to merge"/>
+        </form:form>
+
+        <a class="c-Button__primary"
+           href="/members/profile/${currentUserProfile.userId}/edit">
+            Merge selected user profile to original
+        </a>
+        <small>The original profile is the current one being displayed on the page, the profile to merge is the one selected on the </small>
+
+    </xcolab:layout>
+</jsp:root>
