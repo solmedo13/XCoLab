@@ -94,7 +94,6 @@ public class MembersController {
 
         Locale locale = LocaleContextHolder.getLocale();
 
-
         int usersCount = MembersClient.countMembers(memberCategoryParam, filterParam);
         int pagesCount = (int) Math.ceil(usersCount / (double) USERS_PER_PAGE);
         int endPage = pagesCount;
@@ -109,7 +108,10 @@ public class MembersController {
         model.addAttribute("endPage", endPage);
         model.addAttribute("sortFilterPage", sortFilterPage);
         model.addAttribute("users", users);
-        model.addAttribute("usersCount", I18nUtils.formatNumberDefaultLocale(locale,usersCount));
+
+        int totalUsersCount = MembersClient.countMembers(null, null);
+        model.addAttribute("totalUsersCount", I18nUtils.formatNumberDefaultLocale(locale, totalUsersCount));
+        model.addAttribute("usersCount", I18nUtils.formatNumberDefaultLocale(locale, usersCount));
         if (StringUtils.isNotEmpty(memberCategoryParam)) {
             final MemberCategory memberCategory = MembersClient.getMemberCategory(memberCategoryParam);
             memberCategory.setDescription(TemplateReplacementUtil
@@ -122,7 +124,10 @@ public class MembersController {
         model.addAttribute("pointsActive", isPointsActive);
 
         model.addAttribute("permissions", membersPermissions);
-        model.addAttribute("isRegistrationOpen", ConfigurationAttributeKey.REGISTRATION_IS_OPEN.get());
+        final Boolean isRegistrationOpen = ConfigurationAttributeKey.REGISTRATION_IS_OPEN.get();
+        model.addAttribute("isRegistrationOpen", isRegistrationOpen);
+        final Boolean isMembersMapEnabled = ConfigurationAttributeKey.MEMBERS_MAP_IS_ENABLED.get();
+        model.addAttribute("isMembersMapEnabled", isMembersMapEnabled);
 
         model.addAttribute("_activePageLink", "community");
         return "members/users";

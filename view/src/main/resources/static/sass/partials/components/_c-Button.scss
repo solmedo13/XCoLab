@@ -48,6 +48,12 @@ $c-Button__grey__borderColor: $t-Color__grey--dark !default;
   &.c-Button--noMargins {
     margin: 0;
   }
+
+  &.block {
+    display: block;
+    width: 100%;
+  }
+
 }
 
 @function hover-color($color, $hover-color: null) {

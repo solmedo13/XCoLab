@@ -1,20 +1,21 @@
 <jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
           xmlns:jsp="http://java.sun.com/JSP/Page"
           xmlns:xcolab="urn:jsptagdir:/WEB-INF/tags"
-          xmlns:collab="urn:jsptld:/WEB-INF/tlds/xcolab.tld"
           version="2.0">
+
     <style type="text/css">
 
-        path {
-            stroke: #404040;
-        }
-
-        .svg-container {
+        .c-Map {
             position: relative;
             display: inline-block;
+            width: 100%;
         }
 
-        .map-tooltip {
+        .c-Map path {
+            stroke: #888;
+        }
+
+        .c-Map .c-Map__tooltip {
             color: #50b948;
             position: absolute;;
             font-size: 35px;
@@ -24,45 +25,22 @@
             text-align: center;
         }
 
-        #legend {
-            width: 400px;
-            line-height: 30px;
-            padding: 0 10px;
-
-            position: absolute;
-            bottom: 0;
-            left: 0;
-
-            /* not used right now */
-            display: none;
-
-            background: #ffffff; /* Old browsers */
-            background: -moz-linear-gradient(left, #ffffff 0%, #30a3fb 100%); /* FF3.6-15 */
-            background: -webkit-linear-gradient(left, #ffffff 0%, #30a3fb 100%); /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to right, #ffffff 0%, #30a3fb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#30a3fb', GradientType=1); /* IE6-9 */
-        }
-
-        #attribution {
+        .c-Map .c-Map__attribution {
             position: absolute;
             bottom: 1%;
             right: 1%;
 
             font-size: 10px;
-            color: #575757;
+            color: #888;
         }
     </style>
 
-        <div class="svg-container">
+        <div class="c-Map">
 
             <jsp:include page="map-svg.jspx"/>
 
-            <div class="map-tooltip"><!-- --></div>
-            <div id="legend">
-                <span style="float: left">0</span>
-                <span id="legend-max" style="float: right; color: white;">100,000</span>
-            </div>
-            <div id="attribution">
+            <div class="c-Map__tooltip"><!-- --></div>
+            <div class="c-Map__attribution">
                 Map courtesy of <a href="http://pixelmap.amcharts.com">amCharts</a>.
             </div>
         </div>
@@ -109,9 +87,7 @@
                 .range(["white", "#30a3fb"])
                 .domain([1, maxMembers]);
 
-            d3.select("#legend-max").html(maxMembers);
-
-            var currentSelection = d3.select("body").select(".map-tooltip").append("span");
+            var currentSelection = d3.select("body").select(".c-Map__tooltip").append("span");
 
             d3.select("body").selectAll("path")
                 .data(countryStats, function (d) {
@@ -133,7 +109,7 @@
                         if (Math.round(d.membersCount / totalMembers * 100) !== 0) {
                             percent = Math.round(d.membersCount / totalMembers * 100);
                         }
-                        return d.membersCount + " (" + percent + " %)<br />" + d.countryName;
+                        return d.membersCount.toLocaleString() + " (" + percent + " %)<br />" + d.countryName;
                     });
 
                 })

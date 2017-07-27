@@ -6,6 +6,8 @@
 	xmlns:form="http://www.springframework.org/tags/form"
 	 version="2.0">
 
+    <!--@elvariable id="_member" type="org.xcolab.client.members.pojo.Member"-->
+
     <!--@elvariable id="memberCategory" type="org.xcolab.client.members.pojo.MemberCategory"-->
     
 	<div id="bread" class="pro">
@@ -14,29 +16,69 @@
 		<a href="/members"><spring:message code="colab.breadcrums.members"/> </a>
 	</div>
 
-	<!-- HELP DIVS -->
-	<div class="c-Helpbox" id="help1" style="display: none;">
-		<div class="c-Helpbox__header">
-			<span class="c-Helpbox__header__title"><spring:message code="community.page.help.title"/> </span>
-			<div class="c-Helpbox__header__close">
-				<a href="javascript:;" onclick="Cookies.set('climatecolab_hide_members_msg', 'true'); jQuery('#help1').hide()">
-				<img src="${_themeImageFolder}/helpbox_close.png" width="20" height="20" alt="X" /></a>
-			</div>
-		</div>
-		<div class="c-Helpbox__text">
+    <!-- Members popup -->
+    <div class="c-Helpbox" id="help1" style="display: none;">
+        <div class="c-Helpbox__header">
+            <span class="c-Helpbox__header__title"><spring:message code="community.page.help.title"/> </span>
+            <div class="c-Helpbox__header__close">
+                <a href="javascript:;" onclick="Cookies.set('hideNewMembersMsg', 'true'); jQuery('#help1').hide()">
+                    <img src="${_themeImageFolder}/helpbox_close.png" width="20" height="20" alt="X" /></a>
+            </div>
+        </div>
+        <div class="c-Helpbox__text">
             <c:if test="${isRegistrationOpen}">
-				<spring:message code="community.page.help.text" arguments="${_colabName}"/>
+                <spring:message code="community.page.help.text" arguments="${_colabName}"/>&#160;
             </c:if>
             <spring:message code="community.page.help.text2"/>
-            Send a message to a member by clicking on the screen
-			name below to open their profile and then selecting "Send message."
-		</div>
-		<script>
-			if (!Cookies.get("climatecolab_hide_members_msg")) {
-			    jQuery("#help1").show();
-			}
-		</script>
-	</div>
+        </div>
+        <script>
+            jQuery(function() {
+                if (!Cookies.get("hideNewMembersMsg")) {
+                    jQuery("#help1").show();
+                }
+            });
+        </script>
+    </div>
+
+    <c:if test="${isMembersMapEnabled}">
+        <div class="container-fluid h-Margin__bottom h-Margin--large">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="c-Box boxColor--primary large text-center h-Margin__bottom h-Margin--large">
+                        <div class="c-Count large">
+                            <div class="c-Count__number large">${totalUsersCount}</div>
+                            <spring:message code="community.page.members.count"/>
+                        </div>
+                    </div>
+                    <div class="c-Box boxColor--primary large text-center">
+                        <c:set var="filterURL" value="/members?sortFilterPage.sortColumn=${sortFilterPage.sortColumn}&amp;sortFilterPage.sortAscending=${sortFilterPage.sortAscending}&amp;memberCategory=${memberCategoryParam}" />
+
+                        <form action="${filterURL }" id="filterUsersForm" method="post">
+                            <div class="form-group">
+                                <spring:message code="community.page.members.search.placeholder" var="placeHolder"/>
+                                <input class="form-control text-center" type="text" name="filter"
+                                       value="${sortFilterPage.filter }" placeholder="${placeHolder}" />
+                            </div>
+                            <button type="submit" class="c-Button__primary large block">
+                                <spring:message code="community.page.members.search.button.search"/>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <jsp:include page="map/map.jspx"/>
+                    <!-- Override font size for members map tooltip-->
+                    <!-- TODO: include tooltip in svg for automatic scaling? -->
+                    <style>
+                        .c-Map .c-Map__tooltip {
+                            font-size: 24px;
+                        }
+                    </style>
+                </div>
+            </div>
+
+        </div>
+    </c:if>
 
 	<!-- HELP DIV -->
     <c:if test="${not empty memberCategory and not empty memberCategory.description}">
@@ -45,23 +87,11 @@
         </p>
     </c:if>
 
-	<div class="comm_disc-head">
-		<div class="comm_info-left members">
-            <span>${usersCount}</span> <spring:message code="community.page.members.count"/>
-		</div>
-		<div>
-
-			<div class="users-filter" style="position: relative;">
-				<c:set var="filterURL" value="/members?sortFilterPage.sortColumn=${sortFilterPage.sortColumn}&amp;sortFilterPage.sortAscending=${sortFilterPage.sortAscending}&amp;memberCategory=${memberCategoryParam}" />
-
-				<form action="${filterURL }" id="filterUsersForm" method="post">
-                    <spring:message code="community.page.members.search.placeholder" var="placeHolder"/>
-					<input class="comm_search" type="text" value="${sortFilterPage.filter }" placeholder="${placeHolder}" name="filter" />
-					<button type="submit" class="c-Button__primary"><spring:message code="community.page.members.search.button.search"/></button>
-				</form>
-			</div>
-
-		</div>
-	</div>
+    <c:if test="${totalUsersCount != usersCount}">
+        <div class="c-Count">
+            <span class="c-Count__number">${usersCount}</span>
+            &#160;<spring:message code="community.page.members.count"/>
+        </div>
+    </c:if>
 
 </jsp:root>

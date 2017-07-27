@@ -6,7 +6,7 @@ $c-Box__boxColor--dark__margin--top: -34px !default;
 
 $c-Box__background__color--dark: $t-Color__grey--lightest !default;
 $c-Box__background__color--light: transparent !default;
-$c-Box__background__color--primary: $t-Color__primary__grey !default;
+$c-Box__background__color--primary: $t-Color__primary__grey--light !default;
 
 $c-Box__background--dark: $c-Box__background__color--dark !default;
 $c-Box__background--light: $c-Box__background__color--light !default;
@@ -59,6 +59,10 @@ $c-Box__button__boxColor--light__backgroundColor--hover: null !default;
 
   &.messaging {
     padding-top: $c-Box__messaging__padding--top;
+  }
+
+  &.large {
+    padding: 30px;
   }
 
   img {

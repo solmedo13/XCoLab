@@ -20,7 +20,10 @@ public class MembersMapController {
     @RequestMapping("/widgets/membersMap")
     public String showWidget(HttpServletResponse response) {
         response.setHeader(HttpHeaders.CACHE_CONTROL,
-            CacheControl.maxAge(12, TimeUnit.HOURS).getHeaderValue());
+            CacheControl.maxAge(12, TimeUnit.HOURS)
+                    .staleWhileRevalidate(30, TimeUnit.DAYS)
+                    .cachePublic()
+                    .getHeaderValue());
         return "members/map/widget";
     }
 }

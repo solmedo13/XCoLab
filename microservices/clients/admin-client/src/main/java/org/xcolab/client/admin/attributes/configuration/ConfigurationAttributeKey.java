@@ -301,6 +301,10 @@ public final class ConfigurationAttributeKey {
             ConfigurationAttributes.newStringAttribute("MEMBERS_DEFAULT_SORT_COLUMN")
                     .defaultValue("")
                     .build();
+    public static final AttributeGetter<Boolean> MEMBERS_MAP_IS_ENABLED =
+            ConfigurationAttributes.newBooleanAttribute("MEMBERS_MAP_IS_ENABLED")
+            .defaultValue(false)
+            .build();
 
     // Proposal feature flags
     public static final LocalizableAttributeGetter<String> PROPOSALS_SAVE_BUTTON_TEXT =

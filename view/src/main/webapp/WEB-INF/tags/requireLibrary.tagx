@@ -3,5 +3,8 @@
           version="2.0">
     <jsp:directive.attribute name="name" type="java.lang.String" required="true" rtexprvalue="true" description="Name of the required library." />
 
+    <c:if test="${empty _librariesToLoad}">
+        <jsp:useBean id="_librariesToLoad" class="java.util.HashMap" scope="request"/>
+    </c:if>
     <c:set target="${_librariesToLoad}" property="${name}" value="true" />
 </jsp:root>

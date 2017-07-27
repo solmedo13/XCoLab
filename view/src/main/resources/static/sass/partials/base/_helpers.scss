@@ -1,0 +1,42 @@
+// helper classes for margin
+.h-Margin__bottom {
+  margin-bottom: 15px;
+
+  &.h-Margin--large {
+    margin-bottom: 30px;
+  }
+}
+
+.h-Margin__top {
+  margin-top: 15px;
+
+  &.h-Margin--large {
+    margin-top: 30px;
+  }
+}
+
+.h-Margin__right {
+  margin-right: 15px;
+
+  &.h-Margin--large {
+    margin-right: 30px;
+  }
+}
+
+.Margin__left {
+  margin-left: 15px;
+
+  &.h-Margin--large {
+    margin-left: 30px;
+  }
+}
+
+.h-Margin__sides {
+  margin-right: 15px;
+  margin-left: 15px;
+
+  &.h-Margin--large {
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+}
