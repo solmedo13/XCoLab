@@ -1,15 +1,15 @@
-create table admin__configuration_attribute (
+create table test1 (
   name varchar(50),
   string_value varchar(50)
 );
 
-create table user__staff_member (
+create table test2 (
   user_id bigint,
   first_names varchar(50)
 );
 
-SET @isClimateColab = (select exists (select name from admin__configuration_attribute where name = 'COLAB_NAME' and string_value = 'Climate CoLab'));
+SET @isClimateColab = (select exists (select name from test1 where name = 'COLAB_NAME' and string_value = 'Climate CoLab'));
 
-INSERT INTO user__staff_member (user_id,first_names)
+INSERT INTO test2 (user_id,first_names)
 SELECT 2697976, "test"
 WHERE @isClimateCoLab;
