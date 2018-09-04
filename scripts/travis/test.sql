@@ -11,5 +11,5 @@ create table test2 (
 SET @isClimateColab = (select exists (select name from test1 where name = 'COLAB_NAME' and string_value = 'Climate CoLab'));
 
 INSERT INTO test2 (user_id,first_names)
-SELECT 2697976, "test"
+SELECT 2697976, 'test'
 WHERE @isClimateCoLab;
