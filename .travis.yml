@@ -21,7 +21,7 @@ before_install:
 
 addons:
   ssh_known_hosts: cognosis2.mit.edu
-  mariadb: '10.0'
+  mariadb: '10.3'
 
 install: true
 
