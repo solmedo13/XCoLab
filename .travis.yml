@@ -2,9 +2,6 @@ language: java
 jdk: oraclejdk8
 sudo: false
 
-services:
-- mysql
-
 cache:
   yarn: true
   directories:
@@ -24,6 +21,7 @@ before_install:
 
 addons:
   ssh_known_hosts: cognosis2.mit.edu
+  mariadb: '10.0'
 
 install: true
 
